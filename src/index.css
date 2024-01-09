@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        @apply p-0 m-0 bg-slate-900;
+    }
+
+    .app {
+        @apply text-center m-12 text-white;
+    }
+
+    h1 {
+        @apply mb-2 text-3xl font-bold;
+    }
+
+    h2 {
+        @apply mb-1 text-xl font-semibold;
+    }
+
+    .whole-drum {
+        @apply grid grid-cols-[1fr,95px,2fr] grid-rows-[1fr,95px,2fr] gap-3  mx-auto my-12 w-min;
+    }
+
+    .drum-pad {
+        @apply text-xl font-semibold w-24 h-24 border-2 rounded-md text-white shadow-2xl bg-slate-700 active:bg-slate-500 active:border-slate-900 transition active:opacity-55;
+    }
+
+    #display {
+        @apply mb-1 text-xl font-semibold;
+    }
+}

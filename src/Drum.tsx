@@ -6,8 +6,12 @@ type DrumProps = {
 
 const Drum = ({ audioClip }: DrumProps) => {
 
-    const playSound = () => {
-        
+    const playSound = (clip: AudioClip) => {
+        (document.getElementById(clip.keyTrigger) as HTMLAudioElement)
+            .play()
+            .catch(console.error);
+
+        document.getElementById("display")!.innerHTML = clip.desciption;
     };
 
     return (

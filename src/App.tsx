@@ -1,3 +1,4 @@
+import React from 'react';
 import Drum from './Drum';
 import { AudioClip } from './types'
 
@@ -51,14 +52,31 @@ const audioClips: AudioClip[] = [
 
 function App() {
 
+  const playAudio = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const clip = audioClips.find(clip => clip.keyTrigger === e.key.toUpperCase());
+
+    if (!clip) {
+      return;
+    };
+
+    document.getElementById("drum" + clip.keyTrigger)?.focus();
+    document.getElementById("display")!.innerHTML = clip.desciption;
+
+    (document.getElementById(clip.keyTrigger) as HTMLAudioElement)
+        .play()
+        .catch(console.error);
+};
+
   return (
-    <div className="app text-center" id="drum-machine">
+    <div className="app" id="drum-machine" onKeyDown={playAudio}>
       <h1>FreeCC Drum Machine</h1>
+      <h2>Vite and Tailwind</h2>
       <div className="whole-drum">
         {audioClips.map((clip) => (
           <Drum audioClip={clip} key={clip.keyTrigger} />
         ))}
       </div>
+      <div id="display"></div>
     </div>
   )
 }
